@@ -1,8 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
+*{
+  font-family: "Fira Sans", sans-serif;
+  cursor: url('/public/cursor.png'), auto;
+  box-sizing: border-box;
+  
+}
 body{
   background-color: rgb(0, 22, 119);
   /* color: rgba(0, 238, 255, 0.656); */
