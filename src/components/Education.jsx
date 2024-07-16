@@ -39,7 +39,7 @@ function Education() {
           </div>
         </div>
         <div className="w-[100%] md:w-[40%] ">
-          <img className="w-[80%] m-auto mix-blend-multiply"  src="public/images/edu.png" alt="education" />
+          <img className="w-[80%] m-auto mix-blend-multiply"  src="images/edu.png" alt="education" />
         </div>
       </div>
     </div>
