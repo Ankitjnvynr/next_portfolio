@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import SocialMediaPost from './workItems/SocialMediaPost';
 import OutLinedButton from './button/OutLinedButton';
 import MotionGraphicsReel from './workItems/MotionGraphicsReel';
+import Link from 'next/link';
 
 
 
@@ -77,9 +78,9 @@ function MyWork() {
           })}
         </div>
         <div className="text-center py-2 mt-2 mb-3 ">
-          {/* <Link to="/graphic-designs">
+          <Link href="/graphic-designs">
             <OutLinedButton name={noMorePost ? 'No More Data' : 'View More'} />
-          </Link> */}
+          </Link>
         </div>
       </div>
       <div>
@@ -100,11 +101,11 @@ function MyWork() {
               setNoMorePost(true);
             }}
           >
-            {/* <Link to="/motion-graphics">
+            <Link href="/motion-graphics">
               <OutLinedButton
                 name={noMorePost ? 'No More Data' : 'View More'}
               />
-            </Link> */}
+            </Link>
           </span>
         </div>
       </div>

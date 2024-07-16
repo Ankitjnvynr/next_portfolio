@@ -1,5 +1,5 @@
 
-import Typewriter from "typewriter-effect";
+// import Typewriter from "typewriter-effect";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Button from "./button/Button";
 import OutLinedButton from "./button/OutLinedButton";
@@ -12,7 +12,7 @@ function HeroSection() {
 
 
   return (
-    <div  className="bg-gradient-to-b from-transparent from-10% via-red-50 via-30% to-blue-100 py-10 m-0 px-5 md:px-20 mb-15 md:mb-20 rounded-lg md:flex items-center gap-5 min-h-[80vh]">
+    <div className="bg-gradient-to-b from-transparent from-10% via-red-50 via-30% to-blue-100 py-10 m-0 px-5 md:px-20 mb-15 md:mb-20 rounded-lg md:flex items-center gap-5 min-h-[80vh]">
       <div className="flex flex-col gap-3  ">
         <h1 className=" flex text-3xl md:text-5xl my-5 mt-10 font-bold ">
           Hii I am
@@ -22,7 +22,7 @@ function HeroSection() {
           {" "}
           I am a&nbsp;
           <span className=" text-blue-700">
-            <Typewriter
+            {/* <Typewriter
               options={{
                 strings: [
                   " Web Designer",
@@ -33,7 +33,7 @@ function HeroSection() {
                 autoStart: true,
                 loop: true,
               }}
-            />
+            /> */}
           </span>
         </h1>
         <p className="text-justify leading-6 text-lg text-slate-600 ">
@@ -50,7 +50,7 @@ function HeroSection() {
               targetBlank={"targetBlank"}
               link={"/Ankit Resume.pdf"}
             />
-            <OutLinedButton name={"My work"}  />
+            <OutLinedButton name={"My work"} />
           </div>
           <div className="flex gap-4 justify-center md:justify-start">
             <FaFacebook className=" cursor-pointer hover:text-blue-900 text-blue-700 text-3xl" />
@@ -61,7 +61,11 @@ function HeroSection() {
         </div>
       </div>
       <div className="md:w-[50%]m">
-        <img className="w-[100%]" src="/images/programmers.png" alt="" />
+        <img
+          className="w-[100%]"
+          src="/images/programmers.png"
+          alt="/images/programmers.png"
+        />
       </div>
     </div>
   );

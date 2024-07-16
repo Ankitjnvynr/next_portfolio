@@ -82,7 +82,7 @@ function Experience() {
           </ul>
         </div>
         <div>
-          <img src="/images/experience.png" alt="" />
+          <img src="/images/experience.png" alt="Experience Image" />
         </div>
       </div>
     </div>

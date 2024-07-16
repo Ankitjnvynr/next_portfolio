@@ -1,3 +1,6 @@
+
+"use client";
+
 import React from 'react'
 import SocialMediaPost from './components/workItems/SocialMediaPost';
  const SocialMediaPosts = {
@@ -29,7 +32,7 @@ import SocialMediaPost from './components/workItems/SocialMediaPost';
 
 function GrapicDesigns() {
   return (
-    <div className="container px-5 md:px-20">
+    <div className="container  px-5 md:px-20">
       <h2 className="text-2xl">Graphic Designs:- </h2>
       <p className="text-xl text-slate-600 text-justify">
         Mostly for the Graphic Designing I&apos;m mostly using Adobe Photoshop.
