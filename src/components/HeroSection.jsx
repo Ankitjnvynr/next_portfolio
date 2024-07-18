@@ -1,5 +1,5 @@
 
- import Typewriter from "typewriter-effect";
+//  import Typewriter from "typewriter-effect";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Button from "./button/Button";
 import OutLinedButton from "./button/OutLinedButton";
@@ -22,7 +22,7 @@ function HeroSection() {
           {" "}
           I am a&nbsp;
           <span className=" text-blue-700">
-            { <Typewriter
+            {/* {<Typewriter
               options={{
                 strings: [
                   " Web Designer",
@@ -33,7 +33,7 @@ function HeroSection() {
                 autoStart: true,
                 loop: true,
               }}
-            /> 
+            />} */}
           </span>
         </h1>
         <p className="text-justify leading-6 text-lg text-slate-600 ">
