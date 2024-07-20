@@ -1,6 +1,3 @@
-Sure, here is the full code with the necessary imports and modifications to create the directory if it doesn't exist before uploading the file:
-
-```javascript
 import { NextResponse } from "next/server";
 import { writeFile, mkdir } from 'fs/promises';
 import { dirname } from 'path';
@@ -26,6 +23,3 @@ export async function POST(req) {
         return NextResponse.json({ "message": "Failed to upload file", success: false });
     }
 }
-```
-
-This code will handle the file upload, ensure the directory exists, and save the file while returning appropriate responses based on the success or failure of the operations.
