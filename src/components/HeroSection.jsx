@@ -1,6 +1,7 @@
 "use client"
 
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import Typewriter from 'typewriter-effect';
 
 import Button from "./button/Button";
 import OutLinedButton from "./button/OutLinedButton";
@@ -11,13 +12,13 @@ function HeroSection() {
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl md:text-5xl my-5 mt-10 font-bold">
           Hii I am
-          <span className="text-blue-700 rounded-lg">&nbsp;Ankit, web designer</span>
+          <span className="text-blue-700 rounded-lg">&nbsp;Ankit,</span>
         </h1>
-        <h1 className="text-xl md:text-3xl my-3 font-bold">
-          I am a&nbsp;
+        <h1 className="text-xl md:text-3xl my-3 font-bold flex">
+          I am a &nbsp;
           <span className="text-blue-700">
-            {/* Uncomment if using Typewriter */}
-            {/* <Typewriter
+           
+            <Typewriter
               options={{
                 strings: [
                   " Web Designer",
@@ -28,7 +29,7 @@ function HeroSection() {
                 autoStart: true,
                 loop: true,
               }}
-            /> */}
+            />
           </span>
         </h1>
         <p className="text-justify leading-6 text-lg text-slate-600">
