@@ -8,13 +8,14 @@ import { RxCross2 } from "react-icons/rx";
 import Contact from "./Contact";
 
 function Navbar() {
- 
   // const _ = require('lodash');
   const [isOpen, setIsOpen] = useState(false);
   const [isContact, setIsContact] = useState(false);
   const pathname = usePathname();
 
-  const changeContact = () => {setIsContact(!isContact)};
+  const changeContact = () => {
+    setIsContact(!isContact);
+  };
 
   const menus = {
     Home: "/",
@@ -22,7 +23,6 @@ function Navbar() {
     "Hire Me": "#",
     "My work": "/#Mycreativity",
   };
-
 
   return (
     <>
@@ -41,8 +41,8 @@ function Navbar() {
               let name = menu[0];
               return (
                 <li
-                  onClick={() => {
-                    setIsContact(!isContact);
+                  onClick={(e) => {
+                    name == "Hire Me" && setIsContact(!isContact);
                   }}
                   key={name}
                   className={`cursor-pointer ${
@@ -99,7 +99,9 @@ function Navbar() {
           </div>
         )}
       </div>
-      {isContact && <Contact isContact={isContact} changeContact={changeContact} />}
+      {isContact && (
+        <Contact isContact={isContact} changeContact={changeContact} />
+      )}
     </>
   );
 }
