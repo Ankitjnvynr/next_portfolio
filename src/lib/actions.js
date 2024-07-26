@@ -1,35 +1,37 @@
-'use server';
-
 import { signIn } from 'next-auth/react';
 
 export async function authenticate(_currentState, formData) {
-    console.log('Form Data:', formData);
+    const fixedEmail = 'ankitbkana@outlook.com';
+    const fixedPassword = 'ankit';
+
+    if (formData.get('email') !== fixedEmail || formData.get('password') !== fixedPassword) {
+        return 'Invalid credentials.';
+    }
+
     try {
         const result = await signIn('credentials', {
-            ...formData,
-            redirect: false // Ensure the result is returned without redirecting
+            email: formData.get('email'),
+            password: formData.get('password'),
+            redirect: false,
         });
 
-        // Handle response
         if (result?.error) {
-            switch (result.error) {
-                case 'CredentialsSignin':
-                    return 'Invalid credentials.';
-                case 'Signin':
-                    return 'Error during sign-in.';
-                default:
-                    return 'Something went wrong.';
+            // Handle specific errors, e.g.,
+            if (result.error === 'CredentialsSignin') {
+                return 'Invalid credentials.';
+            } else if (result.error === 'Signin') {
+                return 'Error during sign-in.';
+            } else {
+                return 'Unknown error: ' + result.error;
             }
         }
 
-        // If successful
         if (result?.ok) {
             return 'success';
         }
 
         return 'Unknown error occurred.';
     } catch (error) {
-        // Handle unexpected errors
         console.error('Unexpected error during authentication:', error);
         return 'An unexpected error occurred.';
     }
