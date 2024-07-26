@@ -1,5 +1,4 @@
-// components/LoginForm.js
-"use client"
+"use client";
 import { useState } from "react";
 
 const LoginForm = () => {
@@ -7,41 +6,51 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    if (res.ok) {
-      // Handle successful login (e.g., redirect to dashboard)
-      console.log("Logged in successfully");
-    } else {
-      // Handle login failure (e.g., show error message)
-      console.error("Login failed");
+    e.preventDefault(); // Prevent default form submission
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (res.ok) {
+        console.log("Logged in successfully!");
+        // Handle successful login (e.g., redirect to dashboard)
+      } else {
+        console.error("Login failed:", await res.text());
+        // Handle login failure (e.g., show error message)
+      }
+    } catch (error) {
+      console.error("Error sending request:", error);
     }
   };
 
   return (
-    
-      <form className="flex flex-col gap-5 p-5 w-fit mx-auto " onSubmit={handleSubmit}>
-        <input
-        className="shadow p-2 rounded max-w-96"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-        className="shadow p-2 rounded max-w-96"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button className="cursor-pointer shadow-xl bg-blue-100 hover:bg-blue-400 transition rounded-lg p-2" type="submit">Login</button>
-      </form>
-   
+    <form
+      className="flex flex-col gap-4 p-4 w-fit mx-auto"
+      onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+        className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        type="submit"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Login
+      </button>
+    </form>
   );
 };
 
