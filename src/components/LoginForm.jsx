@@ -1,68 +1,82 @@
-"use client";
+"use client"; // Mark this as a client component
 
-import { authenticate } from "@/lib/actions.js";
-import { useFormState, useFormStatus } from "react-dom";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
-export default function LoginForm() {
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  return (
-    <div className="flex items-center justify-center min-h-[50vh] bg-gray-100">
-      <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
-          Login
-        </h2>
-        <form action={dispatch} className="space-y-4">
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
-            />
-          </div>
-          <div>
-            {errorMessage && (
-              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
-            )}
-          </div>
-          <LoginButton />
-        </form>
-      </div>
-    </div>
-  );
-}
+  useEffect(() => {
+    const timeout = setTimeout(() => setError(""), 3000);
+    return () => clearTimeout(timeout);
+  }, [error]);
 
-function LoginButton() {
-  const { pending } = useFormStatus();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Hardcoded credentials
+    const hardcodedUsername = "admin";
+    const hardcodedPassword = "Ankit@1558";
 
-  const handleClick = (event) => {
-    if (pending) {
-      event.preventDefault();
+    if (username === hardcodedUsername && password === hardcodedPassword) {
+      // Store user info in localStorage (or any other method you prefer)
+      localStorage.setItem("user", JSON.stringify({ username }));
+      router.push("/dashboard"); // Redirect to protected page
+    } else {
+      setError("Invalid username or password");
     }
   };
 
   return (
-    <button
-      aria-disabled={pending}
-      type="submit"
-      onClick={handleClick}
-      className={`w-full px-4 py-2 font-semibold rounded-lg shadow-lg transition duration-300 ease-in-out ${
-        pending
-          ? "bg-gray-400 cursor-not-allowed"
-          : "bg-blue-500 text-white hover:bg-blue-600"
-      }`}>
-      {pending ? "Loading..." : "Login"}
-    </button>
+    <div className="flex items-center justify-center min-h-[70vh] bg-gray-200">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center">Login</h1>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            />
+          </div>
+          {error && <p className="text-sm text-red-500">{error}</p>}
+          <button
+            type="submit"
+            className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+            Login
+          </button>
+        </form>
+      </motion.div>
+    </div>
   );
-}
+};
+
+export default Login;
