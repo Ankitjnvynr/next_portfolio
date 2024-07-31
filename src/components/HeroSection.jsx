@@ -2,6 +2,7 @@
 
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Typewriter from 'typewriter-effect';
+import { motion } from "framer-motion";
 
 import Button from "./button/Button";
 import OutLinedButton from "./button/OutLinedButton";
@@ -17,7 +18,6 @@ function HeroSection() {
         <h1 className="text-xl md:text-3xl my-3 font-bold flex">
           I am a &nbsp;
           <span className="text-blue-700">
-           
             <Typewriter
               options={{
                 strings: [
@@ -34,9 +34,9 @@ function HeroSection() {
         </h1>
         <p className="text-justify leading-6 text-lg text-slate-600">
           Welcome to my digital playground! I'm{" "}
-          <span className="font-bold">Ankit</span>, a passionate web and
-          graphic designer, as well as a skilled video editor and motion
-          graphics enthusiast. With a keen eye for aesthetics and a love for
+          <span className="font-bold">Ankit</span>, a passionate web and graphic
+          designer, as well as a skilled video editor and motion graphics
+          enthusiast. With a keen eye for aesthetics and a love for
           storytelling, I bring ideas to life in the digital realm.
         </p>
         <div className="h-44 flex flex-col justify-center gap-7">
@@ -56,13 +56,18 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="md:w-[50%]">
+
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="md:w-[50%]">
         <img
           className="w-full"
           src="/images/programmers.png"
           alt="A person programming"
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

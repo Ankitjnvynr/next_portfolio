@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import LogoutButton from "@/components/button/LogoutButton";
 
 const Dashboard = () => {
     const router = useRouter();
@@ -11,16 +10,20 @@ const Dashboard = () => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
             router.push("/login");
-            
         }
     }, [router]);
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <p>This page is only accessible if you're logged in.</p>
-            <LogoutButton />
+
+
+        <div className="flex-1 p-6 ">
+            <h1 className="text-2xl font-bold">Dashboard</h1>
+            <p className="mt-4 min-h-screen">This page is only accessible if you're logged in.</p>
+            <p className="mt-4 min-h-screen">This page is only accessible if you're logged in.</p>
+            
+            {/* Content goes here */}
         </div>
+
     );
 };
 
