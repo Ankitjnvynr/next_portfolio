@@ -9,6 +9,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     // Clear user cookie
     document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    localStorage.removeItem("user")
     router.push("/login");
     };
     
