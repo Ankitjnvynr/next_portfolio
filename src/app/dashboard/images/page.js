@@ -1,12 +1,70 @@
-import FileUpload from '@/components/FileUpload'
-import React from 'react'
 
-function page() {
+"use client"
+import { useState } from 'react';
+
+function UploadForm() {
+  const [file, setFile] = useState(null);
+  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('');
+  const [order, setOrder] = useState(0);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('description', description);
+    formData.append('title', title);
+    formData.append('order', order);
+
+    try {
+      const response = await fetch('/api/images', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (result.result) {
+        alert('File uploaded and details saved!');
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
+  };
+
   return (
-    <div className="max-w-[1300px] w-[95%] m-auto bg-white shadow-lg my-4 rounded-xl overflow-hidden p-3 ">
-      <FileUpload />
-    </div>
-  )
+    <form onSubmit={handleSubmit}>
+      <input
+        type="file"
+        onChange={(e) => setFile(e.target.files[0])}
+        required
+      />
+      <input
+        type="text"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
+        required
+      />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+        required
+      />
+      <input
+        type="number"
+        value={order}
+        onChange={(e) => setOrder(Number(e.target.value))}
+        placeholder="Order"
+        required
+      />
+      <button type="submit">Upload</button>
+    </form>
+  );
 }
 
-export default page
+export default UploadForm;
