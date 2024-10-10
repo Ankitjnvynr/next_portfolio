@@ -12,18 +12,22 @@ function UploadForm() {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('fileName', file);
     formData.append('description', description);
     formData.append('title', title);
     formData.append('order', order);
 
     try {
-      const response = await fetch('/api/images', {
+      const response = await fetch('/api/creatives', {
         method: 'POST',
         body: formData,
       });
+      console.log(formData,description,title);
+      
 
       const result = await response.json();
+      console.log(result);
+      
       if (result.result) {
         alert('File uploaded and details saved!');
       } else {

@@ -11,30 +11,34 @@ const FileUpload = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(file);
+    
     if (!file) return;
 
     const data = new FormData();
     data.set("file", file);
+    console.log(data.file);
+    
 
-    try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: data,
-      });
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(
-          `HTTP error! status: ${res.status}, message: ${errorText}`
-        );
-      }
+    // try {
+    //   const res = await fetch("/api/upload", {
+    //     method: "POST",
+    //     body: data,
+    //   });
+    //   if (!res.ok) {
+    //     const errorText = await res.text();
+    //     throw new Error(
+    //       `HTTP error! status: ${res.status}, message: ${errorText}`
+    //     );
+    //   }
 
-      const d = await res.json();
-      setMessage("File uploaded successfully!");
-      console.log(d);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      setMessage(`File upload failed: ${error.message}`);
-    }
+    //   const d = await res.json();
+    //   setMessage("File uploaded successfully!");
+    //   console.log(d);
+    // } catch (error) {
+    //   console.error("Error uploading file:", error);
+    //   setMessage(`File upload failed: ${error.message}`);
+    // }
   };
 
   return (
