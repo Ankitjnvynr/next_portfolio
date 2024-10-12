@@ -19,7 +19,7 @@ function Footer() {
   return (
     <>
     <div className="whatsapp-chat fixed bottom-0 right-[20px] font-xl">
-   <WhatsappChat/>
+   {/* <WhatsappChat/> */}
     </div>
       <div className="flex justify-between">
         <ul>

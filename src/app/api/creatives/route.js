@@ -26,7 +26,7 @@ export async function POST(request) {
   await writeFile(path, buffer);
 
   // Save the creative details in the database, using the unique file name
-  // await Creative.create({ title, description, fileName: uniqueFileName });
+   await Creative.create({ title, description, fileName: uniqueFileName });
 
   console.log(file);
   console.log("Title:", title);
