@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
+import WhatsappChat from './WhatsappChat';
 
 function Footer() {
   let mainMenus = {
@@ -16,6 +18,9 @@ function Footer() {
 
   return (
     <>
+    <div className="whatsapp-chat fixed bottom-0 right-[20px] font-xl">
+   {/* <WhatsappChat/> */}
+    </div>
       <div className="flex justify-between">
         <ul>
           <p className="text-blue-300 font-bold">Main Menus</p>
