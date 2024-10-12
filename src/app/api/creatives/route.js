@@ -5,7 +5,8 @@ import { writeFile } from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID library
 
 export async function POST(request) {
-  const data = await request.formData();
+  try {
+    const data = await request.formData();
   const file = data.get("file");
   const title = data.get("title");
   const description = data.get("description");
@@ -33,6 +34,9 @@ export async function POST(request) {
   console.log("Description:", description);
 
   return NextResponse.json({ status: 200, message: "Design Uploaded" });
+  } catch (error) {
+    return NextResponse.json({status:500,message:error});
+  }
 }
 
 export async function GET(request) {
