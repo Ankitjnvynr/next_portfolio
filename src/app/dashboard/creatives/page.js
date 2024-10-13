@@ -1,5 +1,6 @@
 
 "use client"
+import CreativesView from '@/components/dashboardComps/CreativesView';
 import { useState } from 'react';
 
 function UploadForm() {
@@ -12,10 +13,9 @@ function UploadForm() {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('fileName', file);
+    formData.append('file', file);
     formData.append('description', description);
     formData.append('title', title);
-    formData.append('order', order);
 
     try {
       const response = await fetch('/api/creatives', {
@@ -28,7 +28,7 @@ function UploadForm() {
       const result = await response.json();
       console.log(result);
       
-      if (result.result) {
+      if (result) {
         alert('File uploaded and details saved!');
       } else {
         alert(`Error: ${result.error}`);
@@ -39,20 +39,17 @@ function UploadForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+<>
+<form onSubmit={handleSubmit} className='flex items-center p-3 shadow gap-3 flex-wrap' >
       <input
+      className='px-2 flex-1' 
         type="file"
         onChange={(e) => setFile(e.target.files[0])}
         required
       />
+      
       <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description"
-        required
-      />
-      <input
+      className='border border-blue-300 px-2 flex-1'
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -60,14 +57,20 @@ function UploadForm() {
         required
       />
       <input
-        type="number"
-        value={order}
-        onChange={(e) => setOrder(Number(e.target.value))}
-        placeholder="Order"
+      className='border border-blue-300 px-2 flex-1'
+        type="text"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
         required
       />
-      <button type="submit">Upload</button>
+     
+      <button className='border rounded-lg px-3 py-1 bg-blue-800 text-white'  type="submit">Upload</button>
     </form>
+
+<CreativesView/>
+</>
+
   );
 }
 

@@ -10,7 +10,7 @@ export default function DashboardLayout({
             <section className="flex">
                 <Sidebar />
 
-                <div className="overflow-y-scroll flex-1 h-[55vh]">
+                <div className="overflow-y-scroll flex-1 h-[85vh]">
                     {children}
                 </div>
             </section>
