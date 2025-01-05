@@ -1,8 +1,6 @@
-import conf from "../conf/conf";
+import conf from "@/lib/conf";
 import { Client, Account, ID, OAuthProvider } from "appwrite";
-import * as AuthSession from "expo-auth-session";
-import * as WebBrowser from "expo-web-browser";
-const redirectUri = AuthSession.makeRedirectUri({ useProxy: true });
+
 
 export class AuthService {
   client = new Client();
@@ -60,33 +58,7 @@ export class AuthService {
 
   
 
-  async loginWithOAuth() {
-    try {
-      // Appwrite OAuth configuration
-      const provider = "google"; // Or any other provider (e.g., "github", "facebook")
-      const redirectUri = AuthSession.makeRedirectUri({
-        useProxy: true, // Use Expo proxy in development
-      });
-  
-      // Construct OAuth URL for Appwrite
-      const authUrl = `${conf.appwriteUrl}/account/sessions/oauth2/${provider}?project=${conf.appwriteProjectId}&success=${encodeURIComponent(redirectUri)}&failure=${encodeURIComponent(redirectUri)}`;
-  
-      console.log("OAuth URL:", authUrl);
-  
-      // Start the OAuth flow
-      const result = await AuthSession.startAsync({ authUrl });
-  
-      if (result.type === "success" && result.params.success) {
-        console.log("OAuth success:", result);
-        const user = await this.getCurrentUser(); // Fetch user session
-        return user;
-      } else {
-        console.error("OAuth flow canceled or failed");
-      }
-    } catch (error) {
-      console.error("Error during OAuth login:", error);
-    }
-  }
+
 
 
 

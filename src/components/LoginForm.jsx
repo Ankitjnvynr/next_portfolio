@@ -27,11 +27,11 @@ const Login = () => {
     }
     // call the login function from appwrite
     authService
-      .login(username, password)
+      .login({email:username, password})
       .then(() => {
         // redirect to the dashboard if the login is successful
         // router.push("/dashboard");
-        console.log("Login successful");
+        console.log("Login successful");  
       })
       .catch((err) => {
         // show the error message if the login fails

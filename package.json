@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "appwrite": "^16.1.0",
     "cookie-parser": "^1.4.6",
     "express-session": "^1.18.0",
     "framer-motion": "^11.3.21",
