@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import authService from "@/appwrite/auth";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -18,17 +19,26 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Hardcoded credentials
-    const hardcodedUsername = "admin";
-    const hardcodedPassword = "Ankit@1558";
 
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      // Store user info in localStorage (or any other method you prefer)
-      localStorage.setItem("user", JSON.stringify({ username }));
-      router.push("/dashboard"); // Redirect to protected page
-    } else {
-      setError("Invalid username or password");
+    // check the username and password
+    if (!username || !password) {
+      setError("Please fill in all fields");
+      return;
     }
+    // call the login function from appwrite
+    authService
+      .login(username, password)
+      .then(() => {
+        // redirect to the dashboard if the login is successful
+        // router.push("/dashboard");
+        console.log("Login successful");
+      })
+      .catch((err) => {
+        // show the error message if the login fails
+        setError(err.message);
+      });
+    
+
   };
 
   return (
