@@ -6,12 +6,7 @@ import { useRouter } from "next/navigation";
 const Dashboard = () => {
     const router = useRouter();
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (!user) {
-            router.push("/login");
-        }
-    }, [router]);
+    
 
     return (
 

@@ -1,15 +1,26 @@
 "use client"; // Mark this as a client component
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import authService from "@/appwrite/auth";
+
+
+
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setError(""), 3000);

@@ -1,16 +1,26 @@
 "use client"; // Mark this as a client component
 
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import authService from "@/appwrite/auth";
+
 
 const Sidebar = () => {
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Clear user cookie
-    document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    localStorage.removeItem("user");
-    router.push("/login");
+  const handleLogout = async () => {
+  
+    try {
+      const user = await authService.logout();
+      console.log("user", user);
+      
+      router.push("/login");
+      console.log("Logged out");
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const navs = {
