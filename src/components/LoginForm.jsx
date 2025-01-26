@@ -9,7 +9,7 @@ import authService from "@/appwrite/auth";
 
 
 
-const Login = () => {
+const  Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
